@@ -1,4 +1,4 @@
-<u>Game Format</u>
+**Game Format**
 
 *This is a design document outlining the rules of a Clock Coop game.*
 
