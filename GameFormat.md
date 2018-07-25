@@ -1,4 +1,4 @@
-title: "Basic Design"
+**Game Format**
 
 *This is a design document outlining the rules of a Clock Coop game.*
 
