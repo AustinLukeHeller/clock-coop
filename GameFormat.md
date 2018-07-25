@@ -1,6 +1,4 @@
----
 title: "Basic Design"
----
 
 *This is a design document outlining the rules of a Clock Coop game.*
 
