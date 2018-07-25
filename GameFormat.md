@@ -22,6 +22,7 @@
  - WASD : movement
  - "V" : action 1
  - "B" : action 2
+ 
 *Player 2 Controls:*
  - Arrow Keys : movement
  - "/" : action 1
