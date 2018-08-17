@@ -3,7 +3,9 @@ guid: 0d26d445ac3f54042bef890cdebe289d
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - gameManagerPrefab: {fileID: 1257446593912058, guid: b08c8d0c4cdc8b34eab7732f915d0b49,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

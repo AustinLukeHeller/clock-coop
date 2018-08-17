@@ -94,10 +94,14 @@ public class GameManager : MonoBehaviour {
 
         //create the levelsPlayed array with the same length as the current difficulty (easy)
         levelsPlayed = new bool[easyLevels.Length - 1];
+
+       // NextLevel();
 	}
 
     void NextLevel()
     {
+        print("yo");
+
         bool levelsRemain = false;
         //first make sure that we havent played every level
         foreach (bool level in levelsPlayed)
@@ -116,12 +120,17 @@ public class GameManager : MonoBehaviour {
 
         //otherwise if the are levels left
 
+        
+
         //randomly select one
         int levelChosen;
         do
         {
-            levelChosen = Random.Range(0, levelsPlayed.Length - 1);
-        } while (!levelsPlayed[levelChosen]);
+            levelChosen = Random.Range(0, levelsPlayed.Length);
+        } while (levelsPlayed[levelChosen]);
+
+      
+        
 
         //and load it
         if (difficulty == 1)
