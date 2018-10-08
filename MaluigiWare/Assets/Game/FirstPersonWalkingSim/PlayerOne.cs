@@ -17,7 +17,6 @@ public class PlayerOne : MonoBehaviour {
 	void Update () {
         sideways = Input.GetAxis("Horizontal");
         forward =  Input.GetAxis("Vertical");
-        print(transform.right);
 
         controller.velocity += (transform.right* sideways + transform.forward * forward) * speed;
 
