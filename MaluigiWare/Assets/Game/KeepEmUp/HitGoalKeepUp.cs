@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FinishLineChecker : MonoBehaviour {
+public class HitGoalKeepUp : MonoBehaviour {
 
     [SerializeField] private LevelManager levelManager;
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Ball"))
+        {
+            print("win");
             levelManager.GameWon();
+        }
+
     }
 }

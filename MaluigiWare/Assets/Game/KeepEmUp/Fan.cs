@@ -7,6 +7,8 @@ public class Fan : MonoBehaviour {
     bool blow = false;
     [SerializeField] private float radius=1;
     [SerializeField] private float strength = 1;
+    [SerializeField] private float raycastAmount = 5;
+    [SerializeField] private float windDistance = 5;
 
     [SerializeField] private Rigidbody ball;
     // Use this for initialization
@@ -16,37 +18,18 @@ public class Fan : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (blow) {
-            
-            if(FindIfOnEdge() == 1)
-            {
-
-            }
-            if (FindIfOnEdge() == 2)
-            {
-
-            }
-            else {
-                print(strength * transform.up * power);
-                ball.AddForce(strength*transform.up*power, ForceMode.Impulse);
-            }
-
-
-
-
-            // ball.AddForceAtPosition()
-
-        }
+        GetComponent<Rigidbody>().angularVelocity = new Vector3(0,0,0);
+        PushBall();
 	}
 
     public void IncreasePower() {
-        power+=.01f;
+        power+=.02f;
         if (power > 1)
             power = 1;
     }
 
     public void DecreasePower(){
-        power -= .01f;
+        power -= .02f;
         if (power < 0)
             power = 0;
     }
@@ -69,28 +52,33 @@ public class Fan : MonoBehaviour {
         }
     }
 
-    private int FindIfOnEdge() {
 
-        float seachD = transform.GetChild(0).localScale.y;
+    private void PushBall() {
+        float raycastPower = (strength * power) / raycastAmount;
 
-        Vector3 startLeft = transform.GetChild(1).position;
-        Vector2 startRight = transform.GetChild(2).position;
+        Vector3 Left = transform.GetChild(0).position;
+        Vector3 Right = transform.GetChild(1).position;
 
+        if (raycastAmount < 2)
+            raycastAmount = 3;
 
+        Vector3 increment = (Right - Left) / (raycastAmount - 1);
 
-        RaycastHit[] left = Physics.RaycastAll(startLeft, transform.up, seachD);
-        for (int i = 0; i < left.Length; i++) {
-            if (left[i].transform.gameObject == ball.gameObject)
-                return 1;
-        }
-
-        RaycastHit[] right = Physics.RaycastAll(startRight, transform.up, seachD);
-        for (int i = 0; i < right.Length; i++)
+        for(int i = 0; i<raycastAmount;i++)
         {
-            if (right[i].transform.gameObject == ball.gameObject)
-                return 2;
-        }
-        return 0;
-    }
+          
+            RaycastHit[] wind = Physics.RaycastAll(Left+increment*i, transform.up, windDistance);
 
+            Debug.DrawLine(Left + increment * i, transform.up*windDistance+ Left + increment * i, Color.white);
+
+            for (int j = 0; j < wind.Length; j++)
+            {
+                if (wind[j].transform.gameObject == ball.gameObject)
+                {
+                    print("here");
+                    wind[j].rigidbody.AddForceAtPosition(raycastPower* transform.up, wind[j].point);
+                }
+            }
+        }
+    }
 }
