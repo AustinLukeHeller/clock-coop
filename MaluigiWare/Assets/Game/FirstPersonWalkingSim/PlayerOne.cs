@@ -15,8 +15,8 @@ public class PlayerOne : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        sideways = Input.GetAxis("Horizontal");
-        forward =  Input.GetAxis("Vertical");
+        sideways = Input.GetAxis("HorizontalP1");
+        forward =  Input.GetAxis("VerticalP1");
 
         controller.velocity += (transform.right* sideways + transform.forward * forward) * speed;
 
