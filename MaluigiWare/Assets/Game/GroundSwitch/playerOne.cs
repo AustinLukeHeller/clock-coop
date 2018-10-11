@@ -23,8 +23,8 @@ public class playerOne : MonoBehaviour {
     void GetInput()
     {
 
-        hInput = Input.GetAxis("Horizontal");
-        vInput = Input.GetButton("Vertical");
+        hInput = Input.GetAxis("HorizontalP1");
+        vInput = Input.GetButton("VerticalP1");
     }
 
     private void FixedUpdate()
